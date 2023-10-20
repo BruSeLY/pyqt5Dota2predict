@@ -187,6 +187,8 @@ def get_photo(radiantThis, direThis):
     photoRadiant.paste(im8, (512*2, 1230))
     photoRadiant.paste(im9, (512*3, 1230))
     photoRadiant.paste(im10, (512*4, 1230))
+    photoRadiant.save("photo1.jpg")
+    photoRadiant = Image.open("photo1.jpg").resize((531, 291))
     photoRadiant.save("photo.jpg")
     return photoRadiant
 
@@ -235,10 +237,9 @@ class BetWindow(QMainWindow):
         radiantThis = match["RADIANT"]
         radiantWin = match["RADIANT_WIN"]
         photo = get_photo(radiantThis, direThis)
-        self.pixmap = QPixmap('photo')
+        self.pixmap = QPixmap('photo.jpg')
         # Если картинки нет, то QPixmap будет пустым,
         # а исключения не будет
-        self.photo = QLabel(self)
         self.photo.setPixmap(self.pixmap)
 
     def bet_radiant(self):
