@@ -80,15 +80,12 @@ templ = '''<?xml version="1.0" encoding="UTF-8"?>
      <item>
       <widget class="QLabel" name="label_warning">
        <property name="text">
-        <string>Введите колличество очков</string>
+        <string>Выберите сторону</string>
        </property>
        <property name="scaledContents">
         <bool>false</bool>
        </property>
       </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="input_bet"/>
      </item>
     </layout>
    </widget>
@@ -161,6 +158,12 @@ templ = '''<?xml version="1.0" encoding="UTF-8"?>
 '''
 
 SCREEN_SIZE = [400, 400]
+user_side = ''
+currentMatch = ''
+direThis = ''
+radiantThis = ''
+radiantWin = ''
+count_confirm = 0
 
 
 def get_photo(radiantThis, direThis):
@@ -226,6 +229,8 @@ class BetWindow(QMainWindow):
         self.btn_find_match.clicked.connect(self.find_match)
 
     def find_match(self):
+        global user_side, currentMatch, direThis, radiantThis, radiantWin, count_confirm
+        count_confirm = 0
         with connection.cursor() as cursor:
             find_query = f"SELECT * FROM match1"
             cursor.execute(find_query)
@@ -241,16 +246,40 @@ class BetWindow(QMainWindow):
         # Если картинки нет, то QPixmap будет пустым,
         # а исключения не будет
         self.photo.setPixmap(self.pixmap)
+        self.label_warning.setText("Выберите сторону")
 
     def bet_radiant(self):
-        if self.input_bet.isdigit():
-            pass
+        global user_side
+        user_side = 0
 
     def bet_dire(self):
-        pass
+        global user_side
+        user_side = 1
 
     def confirm(self):
-        pass
+        global user_side, currentMatch, direThis, radiantThis, radiantWin, count_confirm
+        if count_confirm != 0:
+            self.label_warning.setText(f'Выберите новый матч')
+
+        elif user_side == '':
+            self.label_warning.setText("Выберите сторону")
+        else:
+            if user_side == 0:
+
+                if user_side == 0 and radiantWin != 0 or user_side == 1 and radiantWin != 1:
+                    count_confirm = 1
+                    self.label_warning.setText("Вы проиграли")
+                else:
+                    count_confirm = 1
+                    self.label_warning.setText("Вы победили")
+            if user_side == 1:
+
+                if user_side == 0 and radiantWin != 0 or user_side == 1 and radiantWin != 1:
+                    count_confirm = 1
+                    self.label_warning.setText("Вы проиграли")
+                else:
+                    count_confirm = 1
+                    self.label_warning.setText("Вы победили")
 
 
 if __name__ == '__main__':
