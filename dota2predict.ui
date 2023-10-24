@@ -56,15 +56,12 @@
      <item>
       <widget class="QLabel" name="label_warning">
        <property name="text">
-        <string>Введите колличество очков</string>
+        <string>Выберите сторону</string>
        </property>
        <property name="scaledContents">
         <bool>false</bool>
        </property>
       </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="input_bet"/>
      </item>
     </layout>
    </widget>
