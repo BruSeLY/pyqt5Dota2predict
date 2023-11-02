@@ -200,7 +200,7 @@ class BetWindow(QMainWindow):
         radiantThis = match["RADIANT"]
         radiantWin = match["RADIANT_WIN"]
         get_photo(radiantThis, direThis)
-        self.pixmap = QPixmap("photo.jpg")
+        self.pixmap = QPixmap("dist/photo.jpg")
         # Если картинки нет, то QPixmap будет пустым,
         # а исключения не будет
         self.photo.setPixmap(self.pixmap)

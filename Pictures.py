@@ -5,7 +5,7 @@ from PIL import Image
 def get_photo(radiantThis, direThis):
     radiantThis = radiantThis.split()
     direThis = direThis.split()
-    photoRadiant = Image.open("Background.jpg").resize((512 * 5, 1520))
+    photoRadiant = Image.open("dist/Background.jpg").resize((512 * 5, 1520))
     im1 = Image.open(f"IconHero\{radiantThis[0]}_icon.webp").convert("RGB").resize((512, 288))
     im2 = Image.open(f"IconHero\{radiantThis[1]}_icon.webp").convert("RGB").resize((512, 288))
     im3 = Image.open(f"IconHero\{radiantThis[2]}_icon.webp").convert("RGB").resize((512, 288))
@@ -27,6 +27,6 @@ def get_photo(radiantThis, direThis):
     photoRadiant.paste(im9, (512*3, 1230))
     photoRadiant.paste(im10, (512*4, 1230))
     photoRadiant.save("photo1.jpg")
-    photoRadiant = Image.open("photo1.jpg").resize((531, 291))
+    photoRadiant = Image.open("dist/photo1.jpg").resize((531, 291))
     photoRadiant.save("photo.jpg")
     return photoRadiant
