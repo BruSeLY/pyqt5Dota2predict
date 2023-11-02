@@ -55,19 +55,6 @@ templ = '''<?xml version="1.0" encoding="UTF-8"?>
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_profile">
-    <property name="geometry">
-     <rect>
-      <x>770</x>
-      <y>20</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Профиль</string>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
@@ -212,8 +199,8 @@ class BetWindow(QMainWindow):
         direThis = match["DIRE"]
         radiantThis = match["RADIANT"]
         radiantWin = match["RADIANT_WIN"]
-        photo = get_photo(radiantThis, direThis)
-        self.pixmap = QPixmap('photo.jpg')
+        get_photo(radiantThis, direThis)
+        self.pixmap = QPixmap("photo.jpg")
         # Если картинки нет, то QPixmap будет пустым,
         # а исключения не будет
         self.photo.setPixmap(self.pixmap)

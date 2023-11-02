@@ -11,7 +11,6 @@ matches_not_final = {}
 r = r.html.links
 
 
-
 try:
     connection = pymysql.connect(host='37.140.192.80',
                                  user='u0823922_codolo1',
@@ -31,7 +30,6 @@ for i in r:
 print(1)
 print(len(matches_not_final))
 for i in range(len(matches_not_final)):
-
         response = requests.get('https://api.opendota.com/api/matches/' + matches_not_final[i]).json()
         radiant = []
         dire = []
